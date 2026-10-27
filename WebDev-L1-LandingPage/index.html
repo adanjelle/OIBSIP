@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Acacia House – Hotel &amp; Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<!--
+  IMAGES: every picture on this page uses the Pexels photo you chose, framed differently.
+  To use different photos, replace the src of any <img> below with another Pexels URL.
+-->
+<style>
+:root{
+  --deep:#0e2a2f; --deep-2:#173c42; --gold:#c9a45c; --gold-2:#e2c78a;
+  --bg:#f1f4f3; --card:#fff; --text:#25363a; --muted:#5d7174; --line:#d5dfde; --on-deep:#e7efee;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost","Segoe UI",system-ui,Arial,sans-serif; --nav:70px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 8px)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.7 var(--sans)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0;letter-spacing:-.01em}
+p{margin:0} a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px;width:100%}
+
+/* Nav: transparent over hero, solid after scroll (scroll-driven, no JS needed) */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav);color:#fff;background:linear-gradient(rgba(8,26,30,.55),transparent);animation:navbg both linear;animation-timeline:scroll();animation-range:0 220px}
+@keyframes navbg{to{background:rgba(14,42,47,.97);box-shadow:0 6px 24px rgba(0,0,0,.25)}}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font:700 1.65rem var(--serif);text-decoration:none;white-space:nowrap}
+.logo span{color:var(--gold)}
+.menu{display:flex;gap:4px;list-style:none;margin:0;padding:0;align-items:center}
+.menu a{display:block;padding:8px 14px;text-decoration:none;font-weight:500;font-size:.95rem;position:relative}
+.menu a:not(.book)::after{content:"";position:absolute;left:14px;right:14px;bottom:3px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.menu a:not(.book):hover::after{transform:scaleX(1)}
+.book{background:var(--gold);color:var(--deep);font-weight:600;border-radius:3px;transition:background .2s}
+.book:hover{background:var(--gold-2)}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--deep)}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{animation:kb 22s ease-in-out infinite alternate;transform-origin:60% 40%}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.18) translate(-1.5%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,26,30,.88) 0%,rgba(8,26,30,.55) 55%,rgba(8,26,30,.25) 100%),linear-gradient(transparent 60%,rgba(8,26,30,.8))}
+.hero .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:170px}
+.kick{display:inline-flex;align-items:center;gap:12px;color:var(--gold-2);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem}
+.kick::before{content:"";width:40px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(3rem,8vw,6.4rem);max-width:11em;margin-top:18px;font-weight:600}
+.hero .sub{margin-top:24px;max-width:32em;font-size:1.2rem;color:#d3e0df}
+.btns{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-block;padding:16px 32px;border-radius:3px;font-weight:600;text-decoration:none;letter-spacing:.03em;transition:transform .25s,background .25s,color .25s}
+.btn.gold{background:var(--gold);color:var(--deep)} .btn.gold:hover{background:var(--gold-2);transform:translateY(-3px)}
+.btn.ghost{border:1px solid rgba(255,255,255,.7);color:#fff} .btn.ghost:hover{background:#fff;color:var(--deep);transform:translateY(-3px)}
+.rise{opacity:0;transform:translateY(34px);animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.15s}.d2{animation-delay:.35s}.d3{animation-delay:.55s}.d4{animation-delay:.75s}
+@keyframes rise{to{opacity:1;transform:none}}
+.scroll{position:absolute;z-index:2;left:50%;bottom:112px;width:26px;height:44px;border:2px solid rgba(255,255,255,.6);border-radius:14px;transform:translateX(-50%)}
+.scroll::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold-2);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:1;transform:none}100%{opacity:0;transform:translateY(16px)}}
+
+/* Booking bar */
+.bar{position:relative;z-index:5;margin-top:-80px}
+.barin{background:var(--card);border-radius:8px;padding:24px;display:grid;grid-template-columns:repeat(3,1fr) auto;gap:16px;align-items:end;box-shadow:0 30px 60px rgba(8,26,30,.28);border-top:3px solid var(--gold)}
+.f label{display:block;font-size:.85rem;font-weight:500;color:var(--muted);margin-bottom:6px}
+.f input,.f select{width:100%;padding:13px;font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:4px}
+
+section.s{padding:104px 0}
+.head{max-width:38rem;margin-bottom:52px}
+.head h2{font-size:clamp(2.2rem,4.6vw,3.4rem)}
+.head p{margin-top:14px;color:var(--muted)}
+.rule{width:56px;height:2px;background:var(--gold);margin-bottom:20px}
+
+/* Rooms */
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.room{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:transform .4s,box-shadow .4s}
+.room:hover{transform:translateY(-8px);box-shadow:0 28px 50px rgba(14,42,47,.18)}
+.pic{height:240px;position:relative;overflow:hidden;background:var(--deep-2)}
+.pic img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.room:hover .pic img{transform:scale(1.12)}
+.tag{position:absolute;top:14px;left:14px;background:var(--deep);color:var(--gold-2);font-size:.8rem;font-weight:500;padding:5px 14px;border-radius:999px}
+.rb{padding:26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.rb h3{font-size:1.8rem}
+.rb p{color:var(--muted);font-size:.98rem}
+.rb ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.rb li{font-size:.82rem;padding:3px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.price{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line)}
+.price b{font:600 1.8rem var(--serif)} .price small{color:var(--muted)}
+
+/* Marquee */
+.strip{background:var(--deep);color:var(--gold-2);overflow:hidden;white-space:nowrap;padding:20px 0;font:600 1.6rem var(--serif)}
+.strip div{display:inline-block;animation:slide 34s linear infinite}
+.strip:hover div{animation-play-state:paused}
+.strip span{margin:0 28px}.strip i{font-style:normal;color:var(--gold)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Dining */
+.dine{background:var(--card);border-block:1px solid var(--line)}
+.dgrid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
+.arch{position:relative;aspect-ratio:3/4;border-radius:999px 999px 8px 8px;overflow:hidden;border:2px solid var(--gold);box-shadow:0 0 0 12px rgba(201,164,92,.14);background:var(--deep-2)}
+.arch img{animation:kb2 16s ease-in-out infinite alternate;object-position:20% 60%}
+@keyframes kb2{from{transform:scale(1.25)}to{transform:scale(1.5) translateY(-3%)}}
+.badge{position:absolute;right:-8px;bottom:36px;background:var(--deep);color:var(--gold-2);padding:16px 22px;border-radius:8px;box-shadow:0 18px 40px rgba(0,0,0,.3);animation:float 4.5s ease-in-out infinite}
+.badge b{display:block;font:700 2rem var(--serif);line-height:1}
+.badge span{font-size:.85rem;color:var(--on-deep)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.archwrap{position:relative;max-width:440px;margin:0 auto;width:100%}
+.facts{display:grid;gap:8px;margin:20px 0 28px;color:var(--muted)} .facts b{color:var(--text);font-weight:600}
+.tabs input{position:absolute;opacity:0;pointer-events:none}
+.tl{display:flex;gap:8px;margin:26px 0 18px;flex-wrap:wrap}
+.tl label{padding:10px 22px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-weight:500;transition:.2s}
+.tl label:hover{border-color:var(--gold)}
+#t1:checked~.tl [for=t1],#t2:checked~.tl [for=t2],#t3:checked~.tl [for=t3]{background:var(--deep);color:var(--gold-2);border-color:var(--deep)}
+#t1:focus-visible~.tl [for=t1],#t2:focus-visible~.tl [for=t2],#t3:focus-visible~.tl [for=t3]{outline:3px solid var(--gold);outline-offset:3px}
+.pn{display:none;animation:fade .5s}
+#t1:checked~.pn.a,#t2:checked~.pn.b,#t3:checked~.pn.c{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+.dish{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;padding:15px 0;border-bottom:1px dashed var(--line)}
+.dish h3{font:600 1.35rem var(--serif)} .dish .dots{flex:1} .dish b{color:var(--gold);font-weight:600;white-space:nowrap}
+.dish p{flex-basis:100%;color:var(--muted);font-size:.95rem;margin-top:-4px}
+
+/* Gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:14px}
+.gal figure{margin:0;position:relative;overflow:hidden;border-radius:8px;background:var(--deep-2)}
+.gal figure:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gal figure:nth-child(4){grid-column:span 2}
+.gal img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.gal figure:hover img{transform:scale(1.15)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;color:#fff;font:600 1.3rem var(--serif);background:linear-gradient(transparent,rgba(8,26,30,.85));transform:translateY(100%);transition:transform .4s}
+.gal figure:hover figcaption{transform:none}
+
+/* Reviews */
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+blockquote{margin:0;padding:34px;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:0 0 8px 8px}
+blockquote p{font:500 1.4rem/1.45 var(--serif)}
+blockquote footer{margin-top:16px;color:var(--muted);font-size:.92rem}
+
+/* CTA with image */
+.cta{position:relative;color:#fff;text-align:center;padding:110px 0;overflow:hidden;background:var(--deep)}
+.cta img{position:absolute;inset:0;object-position:70% 30%;animation:kb 20s ease-in-out infinite alternate}
+.cta::after{content:"";position:absolute;inset:0;background:rgba(8,26,30,.78)}
+.cta .wrap{position:relative;z-index:2}
+.cta h2{font-size:clamp(2.1rem,5vw,3.4rem)}
+.cta p{margin:14px auto 30px;max-width:32em;color:#c7d8d7}
+
+footer.site{background:#091e22;color:var(--on-deep);padding:60px 0 32px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.fg h3{font:600 1.2rem var(--serif);color:var(--gold-2);margin-bottom:10px}
+.fg ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.fg a{color:#b5c9c8;text-decoration:none} .fg a:hover{color:#fff;text-decoration:underline}
+.fg p{color:#9bb3b2;margin-top:10px;max-width:24em}
+.legal{margin-top:36px;padding-top:18px;border-top:1px solid #1d3b40;font-size:.9rem;color:#8ea7a6}
+
+/* Reveal on scroll (JS adds .in) */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .dgrid{grid-template-columns:1fr;gap:44px}
+  .barin{grid-template-columns:1fr 1fr}.barin .btn{grid-column:1/-1;text-align:center}
+  .rooms,.revs{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+  .gal figure:nth-child(1){grid-column:span 2}.gal figure:nth-child(4){grid-column:span 2}
+  .fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/-1}
+  section.s{padding:68px 0}.scroll{display:none}
+  .hero .wrap{padding-bottom:140px}
+}
+@media (max-width:560px){
+  .wrap{padding:0 18px}.menu li.hm{display:none}.menu a{padding:8px 10px}
+  .barin{grid-template-columns:1fr}.badge{right:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rise,.rv{opacity:1;transform:none} html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">The Acacia <span>House</span></a>
+    <nav aria-label="Main"><ul class="menu">
+      <li class="hm"><a href="#rooms">Rooms</a></li><li><a href="#dining">Dining</a></li>
+      <li class="hm"><a href="#gallery">Gallery</a></li><li class="hm"><a href="#contact">Contact</a></li>
+      <li><a class="book" href="#reserve">Book now</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="bg"><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="The Acacia House hotel"></div>
+    <div class="wrap">
+      <span class="kick rise d1">Boutique hotel and restaurant</span>
+      <h1 class="rise d2">Sleep well. Dine better.</h1>
+      <p class="sub rise d3">Forty-two quiet rooms and a kitchen that cooks over open fire. Stay a night, or just come for dinner.</p>
+      <div class="btns rise d4"><a class="btn gold" href="#reserve">Book a room</a><a class="btn ghost" href="#dining">See the menu</a></div>
+    </div>
+    <div class="scroll" aria-hidden="true"></div>
+  </section>
+
+  <div class="bar" id="reserve"><div class="wrap"><div class="barin">
+    <div class="f"><label for="ci">Check in</label><input id="ci" type="date"></div>
+    <div class="f"><label for="co">Check out</label><input id="co" type="date"></div>
+    <div class="f"><label for="gu">Guests</label><select id="gu"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option></select></div>
+    <a class="btn gold" href="#contact">Check availability</a>
+  </div></div></div>
+
+  <section class="s" id="rooms"><div class="wrap">
+    <div class="head rv"><div class="rule"></div><h2>Rooms made for real rest</h2><p>Blackout curtains, deep mattresses, fast Wi-Fi and breakfast every morning, included in every rate.</p></div>
+    <div class="rooms">
+      <article class="room rv"><div class="pic"><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Garden Room" style="object-position:30% 50%"><span class="tag">Most booked</span></div><div class="rb"><h3>Garden Room</h3><p>Queen bed, writing desk and a private patio facing the courtyard.</p><ul><li>28 m²</li><li>Queen bed</li><li>Patio</li></ul><div class="price"><small>from</small><b>KES 12,500</b><small>/ night</small></div></div></article>
+      <article class="room rv" style="transition-delay:.12s"><div class="pic"><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Deluxe Suite" style="object-position:70% 40%;transform-origin:70% 40%"><span class="tag">Couples</span></div><div class="rb"><h3>Deluxe Suite</h3><p>King bed, separate lounge, rain shower and a deep soaking tub.</p><ul><li>42 m²</li><li>King bed</li><li>Bathtub</li></ul><div class="price"><small>from</small><b>KES 21,000</b><small>/ night</small></div></div></article>
+      <article class="room rv" style="transition-delay:.24s"><div class="pic"><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Family Residence" style="object-position:50% 80%"><span class="tag">Families</span></div><div class="rb"><h3>Family Residence</h3><p>Two bedrooms, a kitchenette and room for up to five guests.</p><ul><li>65 m²</li><li>2 bedrooms</li><li>Kitchenette</li></ul><div class="price"><small>from</small><b>KES 32,000</b><small>/ night</small></div></div></article>
+    </div>
+  </div></section>
+
+  <div class="strip" aria-hidden="true"><div>
+    <span>Free Wi-Fi</span><i>◆</i><span>Heated pool</span><i>◆</i><span>Spa and sauna</span><i>◆</i><span>Airport transfers</span><i>◆</i><span>Meeting rooms</span><i>◆</i><span>24-hour front desk</span><i>◆</i>
+    <span>Free Wi-Fi</span><i>◆</i><span>Heated pool</span><i>◆</i><span>Spa and sauna</span><i>◆</i><span>Airport transfers</span><i>◆</i><span>Meeting rooms</span><i>◆</i><span>24-hour front desk</span><i>◆</i>
+  </div></div>
+
+  <section class="s dine" id="dining"><div class="wrap dgrid">
+    <div class="archwrap rv">
+      <div class="arch"><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=900" alt="The Ember Table restaurant"></div>
+      <div class="badge"><b>4.9</b><span>Guest dining rating</span></div>
+    </div>
+    <div class="rv">
+      <div class="rule"></div><h2 style="font-size:clamp(2.2rem,4.6vw,3.4rem)">The Ember Table</h2>
+      <p style="margin-top:14px;color:var(--muted)">Seasonal dishes from local farms, grilled over wood. Open to hotel guests and visitors.</p>
+      <div class="facts"><p><b>Breakfast</b> 6:30 am – 10:30 am</p><p><b>Lunch</b> 12:00 pm – 3:00 pm</p><p><b>Dinner</b> 6:00 pm – 10:30 pm</p></div>
+      <div class="tabs">
+        <input type="radio" name="m" id="t1" checked><input type="radio" name="m" id="t2"><input type="radio" name="m" id="t3">
+        <div class="tl"><label for="t1">Breakfast</label><label for="t2">Lunch</label><label for="t3">Dinner</label></div>
+        <div class="pn a">
+          <div class="dish"><h3>Shakshuka</h3><span class="dots"></span><b>KES 1,400</b><p>Baked eggs, spiced tomato, feta, grilled flatbread.</p></div>
+          <div class="dish"><h3>Coconut Mandazi Stack</h3><span class="dots"></span><b>KES 1,100</b><p>Warm mandazi, cardamom cream, seasonal fruit.</p></div>
+          <div class="dish"><h3>Full Acacia Breakfast</h3><span class="dots"></span><b>KES 1,900</b><p>Eggs your way, sausage, grilled tomato, toast, coffee.</p></div>
+        </div>
+        <div class="pn b">
+          <div class="dish"><h3>Charred Corn Salad</h3><span class="dots"></span><b>KES 1,300</b><p>Sweet corn, avocado, lime, toasted seeds.</p></div>
+          <div class="dish"><h3>Wood-Fired Chicken</h3><span class="dots"></span><b>KES 2,200</b><p>Half chicken, pili pili butter, kachumbari.</p></div>
+          <div class="dish"><h3>Mushroom Flatbread</h3><span class="dots"></span><b>KES 1,700</b><p>Roasted mushrooms, goat cheese, thyme.</p></div>
+        </div>
+        <div class="pn c">
+          <div class="dish"><h3>Ember-Grilled Ribeye</h3><span class="dots"></span><b>KES 3,800</b><p>300 g steak, smoked butter, roasted root vegetables.</p></div>
+          <div class="dish"><h3>Lake Victoria Tilapia</h3><span class="dots"></span><b>KES 2,900</b><p>Whole grilled fish, coconut rice, tamarind glaze.</p></div>
+          <div class="dish"><h3>Spiced Pumpkin Risotto</h3><span class="dots"></span><b>KES 2,300</b><p>Arborio rice, pumpkin seeds, sage, parmesan.</p></div>
+        </div>
+      </div>
+      <div class="btns"><a class="btn gold" href="#contact">Reserve a table</a></div>
+    </div>
+  </div></section>
+
+  <section class="s" id="gallery"><div class="wrap">
+    <div class="head rv"><div class="rule"></div><h2>A look around</h2></div>
+    <div class="gal rv">
+      <figure><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="The hotel exterior"><figcaption>The house</figcaption></figure>
+      <figure><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Entrance detail" style="object-position:15% 20%;transform:scale(1.5)"><figcaption>Arrival</figcaption></figure>
+      <figure><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lounge detail" style="object-position:85% 60%;transform:scale(1.6)"><figcaption>Lounge</figcaption></figure>
+      <figure><img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Terrace detail" style="object-position:50% 90%;transform:scale(1.3)"><figcaption>Terrace</figcaption></figure>
+    </div>
+  </div></section>
+
+  <section class="s" style="padding-top:0"><div class="wrap">
+    <div class="head rv"><div class="rule"></div><h2>What guests remember</h2></div>
+    <div class="revs">
+      <blockquote class="rv"><p>The quietest hotel room I’ve slept in, and the grilled fish at dinner was worth the trip alone.</p><footer>Amina R., business traveller, 3 nights</footer></blockquote>
+      <blockquote class="rv" style="transition-delay:.12s"><p>Staff remembered our daughter’s name by the second morning. We’re already planning to come back.</p><footer>The Kamau family, 5 nights</footer></blockquote>
+    </div>
+  </div></section>
+
+  <section class="cta">
+    <img src="https://images.pexels.com/photos/18090414/pexels-photo-18090414.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="">
+    <div class="wrap rv"><h2>Your table or your room is waiting</h2><p>Book direct for free late checkout and a welcome drink at the bar.</p><a class="btn gold" href="#reserve">Book now</a></div>
+  </section>
+</main>
+
+<footer class="site" id="contact"><div class="wrap">
+  <div class="fg">
+    <div><a class="logo" href="#top">The Acacia <span>House</span></a><p>A boutique hotel and restaurant for travellers, families and anyone who likes a good dinner.</p></div>
+    <div><h3>Contact</h3><ul><li><a href="mailto:stay@example.com">stay@example.com</a></li><li><a href="tel:+254700000000">+254 700 000 000</a></li><li>12 Acacia Lane, Your City</li></ul></div>
+    <div><h3>Follow</h3><ul><li><a href="#top">Instagram</a></li><li><a href="#top">Facebook</a></li><li><a href="#top">TripAdvisor</a></li></ul></div>
+  </div>
+  <p class="legal">© 2026 The Acacia House. Placeholder brand for a demo page.</p>
+</div></footer>
+
+<script>
+// Reveal elements as they scroll into view
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(list){
+    list.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
